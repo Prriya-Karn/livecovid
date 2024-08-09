@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
-const key = "AIzaSyAW6AQdmmu4If16DM4WlCoW0t9RXv9wnk4";
 const LiveCovid = ()=>{
     const[data,update] = useState([]);
    
 const api = async()=>{
+
     try{
-        const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=${key}
-        &part=snippet,statistics&fields=items(id,snippet,statistics)`)
+        const res = await fetch('https://data.covid19india.org/data.json')
         const actualData = await res.json();
         
-            update(res)
-         
-
-
-       
+            update(actualData.statewise[0])
         
     }
     catch(error){
@@ -28,7 +23,7 @@ const api = async()=>{
     
     return (
     <>
-
+    <h1 className="text-center mt-5 head">Live Covid Data</h1>
 <div className="container">
   <div className="div1 div"> <h3><span>Our</span>Country</h3>
       <h1 className = "h1">India</h1>
